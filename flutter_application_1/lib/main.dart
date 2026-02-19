@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart'; 
+import 'firebase_options.dart';
 import 'screens/donation_screen.dart';
-import 'screens/emergency_screen.dart'; 
+import 'screens/emergency_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +37,8 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState(); // Cleaned up state creation
+  State<HomeScreen> createState() =>
+      _HomeScreenState(); // Cleaned up state creation
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // FIXED: Removed 'const' from the list and the screens
   // Screens that talk to Firebase/AI cannot be 'const'
   final List<Widget> _screens = [
-    EmergencyScreen(), 
+    const EmergencyScreen(),
     DonationScreen(),
     const PlaceholderScreen(title: 'Adoption'),
     const PlaceholderScreen(title: 'Lost & Found'),
@@ -113,10 +114,14 @@ class PlaceholderScreen extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               '$title Feature',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.grey),
+              style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey),
             ),
             const SizedBox(height: 10),
-            const Text('(Coming Soon)', style: TextStyle(fontSize: 16, color: Colors.grey)),
+            const Text('(Coming Soon)',
+                style: TextStyle(fontSize: 16, color: Colors.grey)),
           ],
         ),
       ),

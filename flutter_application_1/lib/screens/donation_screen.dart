@@ -3,7 +3,8 @@ import '../widgets/individual_case_tab.dart';
 import '../widgets/tnr_shelter_tab.dart';
 
 class DonationScreen extends StatelessWidget {
-  const DonationScreen({super.key});
+  // FIXED: Removed 'const' from the constructor
+  DonationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,11 @@ class DonationScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
+        // FIXED: Removed 'const' from TabBarView because its children are now dynamic
+        body: TabBarView(
           children: [
-            IndividualCaseTab(),
-            TNRShelterTab(),
+            IndividualCaseTab(), // No 'const' here
+            TNRShelterTab(),     // No 'const' here
           ],
         ),
       ),
