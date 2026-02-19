@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class RaiseFundForm extends StatefulWidget {
+  const RaiseFundForm({super.key});
+
   @override
   _RaiseFundFormState createState() => _RaiseFundFormState();
 }
@@ -19,9 +21,9 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFFF6B6B),
-        title: Text('Raise Fund', style: TextStyle(color: Colors.white)),
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: const Color(0xFFFF6B6B),
+        title: const Text('Raise Fund', style: TextStyle(color: Colors.white)),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: _isSubmitting ? _buildValidationScreen() : _buildForm(),
     );
@@ -29,14 +31,14 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
 
   Widget _buildForm() {
     return SingleChildScrollView(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Form(
         key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.blue[50],
                 borderRadius: BorderRadius.circular(10),
@@ -45,7 +47,7 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
               child: Row(
                 children: [
                   Icon(Icons.info_outline, color: Colors.blue[700], size: 24),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'AI will verify your submission to prevent fraud.',
@@ -55,9 +57,9 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
                 ],
               ),
             ),
-            SizedBox(height: 24),
-            Text('Case Title*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-            SizedBox(height: 8),
+            const SizedBox(height: 24),
+            const Text('Case Title*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+            const SizedBox(height: 8),
             TextFormField(
               controller: _titleController,
               decoration: InputDecoration(
@@ -73,9 +75,9 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
                 return null;
               },
             ),
-            SizedBox(height: 20),
-            Text('Description*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-            SizedBox(height: 8),
+            const SizedBox(height: 20),
+            const Text('Description*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+            const SizedBox(height: 8),
             TextFormField(
               controller: _descriptionController,
               maxLines: 5,
@@ -95,9 +97,9 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
                 return null;
               },
             ),
-            SizedBox(height: 20),
-            Text('Funding Goal (RM)*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-            SizedBox(height: 8),
+            const SizedBox(height: 20),
+            const Text('Funding Goal (RM)*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+            const SizedBox(height: 8),
             TextFormField(
               controller: _goalController,
               keyboardType: TextInputType.number,
@@ -115,9 +117,9 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
                 return null;
               },
             ),
-            SizedBox(height: 20),
-            Text('Vet Quotation*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-            SizedBox(height: 8),
+            const SizedBox(height: 20),
+            const Text('Vet Quotation*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+            const SizedBox(height: 8),
             TextFormField(
               controller: _quotationController,
               maxLines: 4,
@@ -134,12 +136,12 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
                 return null;
               },
             ),
-            SizedBox(height: 20),
-            Text('Upload Photos*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-            SizedBox(height: 8),
+            const SizedBox(height: 20),
+            const Text('Upload Photos*', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+            const SizedBox(height: 8),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(40),
+              padding: const EdgeInsets.all(40),
               decoration: BoxDecoration(
                 color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(10),
@@ -148,12 +150,12 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
               child: Column(
                 children: [
                   Icon(Icons.cloud_upload_outlined, size: 60, color: Colors.grey[400]),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Text('Tap to upload photos', style: TextStyle(color: Colors.grey[600])),
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -162,7 +164,7 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
                     setState(() {
                       _isSubmitting = true;
                     });
-                    Future.delayed(Duration(seconds: 4), () {
+                    Future.delayed(const Duration(seconds: 4), () {
                       setState(() {
                         _showValidation = true;
                       });
@@ -170,11 +172,11 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFF6B6B),
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: const Color(0xFFFF6B6B),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
-                child: Text(
+                child: const Text(
                   'Submit for Review',
                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                 ),
@@ -188,7 +190,7 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
 
   Widget _buildValidationScreen() {
     if (!_showValidation) {
-      return Center(
+      return const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -212,10 +214,10 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
     }
 
     return SingleChildScrollView(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             width: 100,
             height: 100,
@@ -225,27 +227,27 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
             ),
             child: Icon(Icons.check_circle, size: 70, color: Colors.green[600]),
           ),
-          SizedBox(height: 24),
-          Text(
+          const SizedBox(height: 24),
+          const Text(
             'AI Verification Complete',
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           _buildCheckItem('✅', 'Well-written description', true),
           _buildCheckItem('✅', 'Quotation submitted', true),
           _buildCheckItem('✅', 'Photos are clear', true),
           _buildCheckItem('✅', 'User has past activities', true),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [Color(0xFFE8F5E9), Color(0xFFC8E6C9)],
               ),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Column(
+            child: const Column(
               children: [
                 Text('Status', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 SizedBox(height: 12),
@@ -258,16 +260,16 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
               ],
             ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () => Navigator.pop(context),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFFFF6B6B),
-                padding: EdgeInsets.symmetric(vertical: 16),
+                backgroundColor: const Color(0xFFFF6B6B),
+                padding: const EdgeInsets.symmetric(vertical: 16),
               ),
-              child: Text('Done', style: TextStyle(color: Colors.white, fontSize: 16)),
+              child: const Text('Done', style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
           ),
         ],
@@ -277,8 +279,8 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
 
   Widget _buildCheckItem(String icon, String text, bool isChecked) {
     return Container(
-      margin: EdgeInsets.only(bottom: 12),
-      padding: EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.green[50],
         borderRadius: BorderRadius.circular(10),
@@ -286,9 +288,9 @@ class _RaiseFundFormState extends State<RaiseFundForm> {
       ),
       child: Row(
         children: [
-          Text(icon, style: TextStyle(fontSize: 20)),
-          SizedBox(width: 12),
-          Expanded(child: Text(text, style: TextStyle(fontSize: 15))),
+          Text(icon, style: const TextStyle(fontSize: 20)),
+          const SizedBox(width: 12),
+          Expanded(child: Text(text, style: const TextStyle(fontSize: 15))),
         ],
       ),
     );

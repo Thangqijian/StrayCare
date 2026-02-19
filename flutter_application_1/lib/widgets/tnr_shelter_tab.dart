@@ -23,19 +23,21 @@ class TNRShelterTab extends StatelessWidget {
     },
   ];
 
+  const TNRShelterTab({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       children: [
         Container(
-          margin: EdgeInsets.only(bottom: 16),
-          padding: EdgeInsets.all(20),
+          margin: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [Color(0xFFE8F5E9), Color(0xFFC8E6C9)]),
+            gradient: const LinearGradient(colors: [Color(0xFFE8F5E9), Color(0xFFC8E6C9)]),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Column(
+          child: const Column(
             children: [
               Text('147', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Color(0xFF2E7D32))),
               SizedBox(height: 8),
@@ -47,7 +49,7 @@ class TNRShelterTab extends StatelessWidget {
             ],
           ),
         ),
-        ...shelters.map((shelter) => _buildShelterCard(context, shelter)).toList(),
+        ...shelters.map((shelter) => _buildShelterCard(context, shelter)),
       ],
     );
   }
@@ -58,18 +60,18 @@ class TNRShelterTab extends StatelessWidget {
         Navigator.push(context, MaterialPageRoute(builder: (context) => ShelterDetailScreen(shelterData: shelter)));
       },
       child: Card(
-        margin: EdgeInsets.only(bottom: 16),
+        margin: const EdgeInsets.only(bottom: 16),
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: Text(shelter['name'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+                  Expanded(child: Text(shelter['name'], style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.blue[100],
                       borderRadius: BorderRadius.circular(8),
@@ -78,9 +80,9 @@ class TNRShelterTab extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.blue[50],
                   borderRadius: BorderRadius.circular(10),
@@ -88,16 +90,16 @@ class TNRShelterTab extends StatelessWidget {
                 child: Column(
                   children: [
                     _buildStatRow('📍 Distance', '${shelter['distance']} km away'),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     _buildStatRow('✂️ TNR Completed', '${shelter['tnrCompleted']} animals'),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     _buildStatRow('💰 Current Fund', 'RM ${shelter['currentFund']}'),
                   ],
                 ),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Text(shelter['description'], style: TextStyle(fontSize: 13, color: Colors.grey[700])),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -105,10 +107,10 @@ class TNRShelterTab extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => ShelterDetailScreen(shelterData: shelter)));
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFFF6B6B),
-                    padding: EdgeInsets.symmetric(vertical: 14),
+                    backgroundColor: const Color(0xFFFF6B6B),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
-                  child: Text('Donate to TNR Fund', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
+                  child: const Text('Donate to TNR Fund', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold)),
                 ),
               ),
             ],
@@ -123,7 +125,7 @@ class TNRShelterTab extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(label, style: TextStyle(fontSize: 13, color: Colors.grey[700])),
-        Text(value, style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF2E7D32))),
+        Text(value, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color(0xFF2E7D32))),
       ],
     );
   }

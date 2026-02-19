@@ -1,48 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart'; 
 import 'screens/donation_screen.dart';
+import 'screens/emergency_screen.dart'; 
 
-void main() {
-  runApp(PawGuardApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const PawGuardApp());
 }
 
 class PawGuardApp extends StatelessWidget {
+  const PawGuardApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'PawGuard',
       theme: ThemeData(
-        primaryColor: Color(0xFFFF6B6B),
+        primaryColor: const Color(0xFFFF6B6B),
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Color(0xFFFF6B6B),
-          primary: Color(0xFFFF6B6B),
+          seedColor: const Color(0xFFFF6B6B),
+          primary: const Color(0xFFFF6B6B),
         ),
         useMaterial3: true,
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState(); // Cleaned up state creation
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
+  // FIXED: Removed 'const' from the list and the screens
+  // Screens that talk to Firebase/AI cannot be 'const'
   final List<Widget> _screens = [
-    SimpleHomeContent(),
+    EmergencyScreen(), 
     DonationScreen(),
-    PlaceholderScreen(title: 'Adoption'),
-    PlaceholderScreen(title: 'Lost & Found'),
+    const PlaceholderScreen(title: 'Adoption'),
+    const PlaceholderScreen(title: 'Lost & Found'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_currentIndex],
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _screens,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
@@ -51,11 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Color(0xFFFF6B6B),
+        selectedItemColor: const Color(0xFFFF6B6B),
         unselectedItemColor: Colors.grey,
         selectedFontSize: 12,
         unselectedFontSize: 11,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Text('🚨', style: TextStyle(fontSize: 24)),
             label: 'Emergency',
@@ -78,135 +94,29 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class SimpleHomeContent extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFFFF6B6B),
-        title: Row(
-          children: [
-            Text('🐾 ', style: TextStyle(fontSize: 24)),
-            Text('PawGuard', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-          ],
-        ),
-        actions: [
-          Builder(
-            builder: (context) => IconButton(
-              icon: Icon(Icons.menu, color: Colors.white),
-              onPressed: () {
-                Scaffold.of(context).openEndDrawer();
-              },
-            ),
-          ),
-        ],
-      ),
-      endDrawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color(0xFFFF6B6B),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Menu',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              leading: Text('👤', style: TextStyle(fontSize: 20)),
-              title: Text('My Profile'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Text('📝', style: TextStyle(fontSize: 20)),
-              title: Text('My Posts'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Text('💰', style: TextStyle(fontSize: 20)),
-              title: Text('My Donations'),
-              onTap: () {},
-            ),
-            Divider(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(
-                'APP SETTINGS',
-                style: TextStyle(fontSize: 12, color: Colors.grey, fontWeight: FontWeight.bold),
-              ),
-            ),
-            ListTile(
-              leading: Text('🔔', style: TextStyle(fontSize: 20)),
-              title: Text('Notifications'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Text('⚙️', style: TextStyle(fontSize: 20)),
-              title: Text('Settings'),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('🚨', style: TextStyle(fontSize: 80)),
-            SizedBox(height: 20),
-            Text(
-              'Emergency Feature',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.grey),
-            ),
-            SizedBox(height: 10),
-            Text('(Coming Soon)', style: TextStyle(fontSize: 16, color: Colors.grey)),
-            SizedBox(height: 40),
-            Text(
-              '👇 Click Donation Below 👇',
-              style: TextStyle(fontSize: 16, color: Color(0xFFFF6B6B), fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class PlaceholderScreen extends StatelessWidget {
   final String title;
-
-  PlaceholderScreen({required this.title});
+  const PlaceholderScreen({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFFF6B6B),
-        title: Text(title, style: TextStyle(color: Colors.white)),
+        backgroundColor: const Color(0xFFFF6B6B),
+        title: Text(title, style: const TextStyle(color: Colors.white)),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('🚧', style: TextStyle(fontSize: 80)),
-            SizedBox(height: 20),
+            const Text('🚧', style: TextStyle(fontSize: 80)),
+            const SizedBox(height: 20),
             Text(
               '$title Feature',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.grey),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.grey),
             ),
-            SizedBox(height: 10),
-            Text('(Coming Soon)', style: TextStyle(fontSize: 16, color: Colors.grey)),
+            const SizedBox(height: 10),
+            const Text('(Coming Soon)', style: TextStyle(fontSize: 16, color: Colors.grey)),
           ],
         ),
       ),
