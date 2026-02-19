@@ -24,22 +24,24 @@ class IndividualCaseTab extends StatelessWidget {
     },
   ];
 
+  const IndividualCaseTab({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
           width: double.infinity,
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: ElevatedButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => RaiseFundForm()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const RaiseFundForm()));
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFFFF6B6B),
-              padding: EdgeInsets.symmetric(vertical: 16),
+              backgroundColor: const Color(0xFFFF6B6B),
+              padding: const EdgeInsets.symmetric(vertical: 16),
             ),
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.add_circle_outline, color: Colors.white),
@@ -51,7 +53,7 @@ class IndividualCaseTab extends StatelessWidget {
         ),
         Expanded(
           child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             itemCount: cases.length,
             itemBuilder: (context, index) {
               final caseData = cases[index];
@@ -62,25 +64,25 @@ class IndividualCaseTab extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => CaseDetailScreen(caseData: caseData)));
                 },
                 child: Card(
-                  margin: EdgeInsets.only(bottom: 16),
+                  margin: const EdgeInsets.only(bottom: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         height: 200,
                         color: Colors.grey[300],
-                        child: Center(child: Text('🐕', style: TextStyle(fontSize: 60))),
+                        child: const Center(child: Text('🐕', style: TextStyle(fontSize: 60))),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
-                                Expanded(child: Text(caseData['title'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+                                Expanded(child: Text(caseData['title'], style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
                                 Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                                   decoration: BoxDecoration(
                                     color: Colors.green[100],
                                     borderRadius: BorderRadius.circular(8),
@@ -89,16 +91,16 @@ class IndividualCaseTab extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text(caseData['description'], style: TextStyle(fontSize: 14, color: Colors.grey[700])),
-                            SizedBox(height: 12),
+                            const SizedBox(height: 12),
                             LinearProgressIndicator(
                               value: caseData['raised'] / caseData['goal'],
                               backgroundColor: Colors.grey[300],
-                              valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                              valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
                               minHeight: 8,
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
