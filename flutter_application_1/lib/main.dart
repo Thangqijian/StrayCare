@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/donation_screen.dart';
 import 'screens/Adoption/Adoption_HomePage.dart';
 import 'screens/chat_list_screen.dart';
+import 'screens/LostnFound/LostnFound_page.dart';
 import 'widgets/app_drawer.dart';
 
 void main() {
@@ -43,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const SimpleHomeContent(),
     DonationScreen(),
     const AdoptionScreen(),
-    const PlaceholderScreen(title: 'Lost & Found'),
+    const LostHomePage(),
     const ChatListScreen(),
   ];
 
