@@ -8,6 +8,7 @@
 **PawAlert** is a modular mobile application designed to bridge the gap between stray animal emergencies and volunteer responders.
 
 ### 👥 Team Members
+- **Team Name:** XP Farming
 - **Member 1 (Jasmine Tang):** Speaker & Pitch Lead & Roadmap Strategy  
 - **Member 2 (Melody Lu Yi En):** AI Specialist & Gemini Integration  
 - **Member 3 (Thang Qi Jian):** Technical Architect & Firebase Management  
